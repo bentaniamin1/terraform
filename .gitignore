@@ -34,3 +34,5 @@ override.tf.json
 terraform.rc
 .terraform.lock.hcl
 jammy-server-cloudimg-amd64.img
+.pub
+id_rsa_*
