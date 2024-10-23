@@ -1,0 +1,44 @@
+commande à passer , création pool dans le libvirt :
+virsh pool-define /dev/stdin <<EOF
+<pool type='dir'>
+  <name>default</name>
+  <target>
+    <path>/var/lib/libvirt/images</path>
+  </target>
+</pool>
+EOF
+
+virsh pool-start default
+
+virsh pool-autostart default
+
+
+Vérifier le network dans libvirt :
+
+virsh net-list --all
+
+
+
+Démarrer un network :
+
+virsh net-start  <name></name>
+
+Image en cours sur libvirt : 
+sudo virsh list --all
+
+
+Recuper l'ip du service :
+
+1) terraform referesh  && terraform output ips <-- déclaré depuis le main.tf
+
+2) sudo virsh net-dhcp-leases defaul
+
+
+Suppression VM :
+terraform destroy -auto-approve
+
+virsh undefine <name> --remove-all-storage
+
+
+
+
