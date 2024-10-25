@@ -13,10 +13,20 @@ variable "ami_value" {
 }
 
 variable "instance_type_value" {
-    type        = string
+    type        = map(string)
     description = "value for instance_type"
+    default = {
+      "dev" = "t2.micro",
+      "preprod" = "t2.medium",
+      "prod" = "t2.large",
+
+    }
 }
 
+variable "value_instance" {
+    type        = string
+    description = "value instance"
+}
 variable "subnet_id_value" {
     type        = string
     description = "value for the subnet_id"

@@ -8,6 +8,21 @@ variable "type_ec2" {
   
 }
 
+variable "ami" {
+  type = string
+}
+
+variable "instance_type_value" {
+    type        = map(string)
+    description = "value for instance_type"
+    default = {
+      "dev" = "t2.micro",
+      "preprod" = "t2.medium",
+      "prod" = "t2.large",
+
+    }
+}
+
 variable "cidr_block_vpc" {
   type = string
   default = "10.0.0.0/16"
@@ -85,12 +100,13 @@ resource "aws_security_group" "webSg" {
 
 module "ec2_m" {
   source = "./modules/instances_ec2"
-  ami_value = "ami-06b21ccaeff8cd686"
+  ami_value = var.ami
   region_value = "us-east-1"
-  instance_type_value = var.type_ec2
+  value_instance = terraform.workspace
   key_name = aws_key_pair.amin.key_name
   security_group_id = aws_security_group.webSg.id
   subnet_id_value = module.subnet_m.subnet_id
 }
+
 
 
