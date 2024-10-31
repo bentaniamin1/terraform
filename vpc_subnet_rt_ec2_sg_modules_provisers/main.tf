@@ -106,6 +106,7 @@ module "ec2_m" {
   key_name = aws_key_pair.amin.key_name
   security_group_id = aws_security_group.webSg.id
   subnet_id_value = module.subnet_m.subnet_id
+
 }
 
 
