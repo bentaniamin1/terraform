@@ -1,0 +1,9 @@
+services:
+  go_api:
+    container_name: go_api
+    image: go-api:1.0.0
+    ports:
+        - "127.0.0.1:3000:3000"
+    environment:
+      - MODE=production 
+    restart: unless-stopped
